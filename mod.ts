@@ -7,6 +7,7 @@ import {
 import {
   type CompiledQuery,
   DefaultQueryExecutor,
+  type JoinNode,
   type OperationNode,
   type QueryId,
   type QueryResult,
@@ -123,7 +124,7 @@ function summarizeQuery({ query }: CompiledQuery<unknown>): string {
         summary = `SELECT`;
       }
       if (query.joins && query.joins.length > 0) {
-        summary += ` JOIN ${getTableNames(query.joins).join(", ")}`;
+        summary += ` JOIN ${getJoinTableNames(query.joins).join(", ")}`;
       }
       break;
     case "InsertQueryNode":
@@ -140,13 +141,13 @@ function summarizeQuery({ query }: CompiledQuery<unknown>): string {
         summary = `UPDATE`;
       }
       if (query.joins && query.joins.length > 0) {
-        summary += ` JOIN ${getTableNames(query.joins).join(", ")}`;
+        summary += ` JOIN ${getJoinTableNames(query.joins).join(", ")}`;
       }
       break;
     case "DeleteQueryNode":
       summary = `DELETE FROM ${getTableNames(query.from.froms).join(", ")}`;
       if (query.joins && query.joins.length > 0) {
-        summary += ` JOIN ${getTableNames(query.joins).join(", ")}`;
+        summary += ` JOIN ${getJoinTableNames(query.joins).join(", ")}`;
       }
       break;
     case "CreateTableNode":
@@ -179,6 +180,12 @@ function summarizeQuery({ query }: CompiledQuery<unknown>): string {
       break;
   }
   return summary;
+}
+
+function getJoinTableNames(
+  joins: ReadonlyArray<JoinNode>,
+): string[] {
+  return getTableNames(joins.map((join) => join.table));
 }
 
 /**
