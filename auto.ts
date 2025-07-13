@@ -2,16 +2,16 @@
  * This module automatically configures OpenTelemetry instrumentation for Kysely
  * database operations using a default tracer. Simply import this module to enable
  * automatic tracing of all Kysely queries and transactions in your application.
- * 
+ *
  * @example
  * ```typescript
  * // Import this module to automatically enable tracing
  * import "@luca/kysely-otel/auto";
- * 
+ *
  * // Now all Kysely operations will be automatically traced
  * const result = await db.selectFrom("users").selectAll().execute();
  * ```
- * 
+ *
  * @module
  */
 

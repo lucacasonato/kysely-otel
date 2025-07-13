@@ -16,18 +16,18 @@ import {
 
 /**
  * Sets up OpenTelemetry instrumentation for Kysely database operations.
- * 
+ *
  * This function patches Kysely's TransactionBuilder and DefaultQueryExecutor
  * to automatically create spans for database transactions and queries, providing
  * distributed tracing capabilities for your database operations.
- * 
+ *
  * @param tracer - The OpenTelemetry tracer instance to use for creating spans
- * 
+ *
  * @example
  * ```typescript
  * import { trace } from "@opentelemetry/api";
  * import { setupInstrumentation } from "@luca/kysely-otel";
- * 
+ *
  * const tracer = trace.getTracer("my-app");
  * setupInstrumentation(tracer);
  * ```
@@ -107,10 +107,10 @@ export function setupInstrumentation(tracer: Tracer) {
 
 /**
  * Generates a human-readable summary of a Kysely compiled query for use in OpenTelemetry span names.
- * 
+ *
  * @param query - The compiled query object containing the query AST
  * @returns A string summary of the query operation (e.g., "SELECT FROM users", "INSERT INTO posts")
- * 
+ *
  * @internal
  */
 function summarizeQuery({ query }: CompiledQuery<unknown>): string {
@@ -183,10 +183,10 @@ function summarizeQuery({ query }: CompiledQuery<unknown>): string {
 
 /**
  * Extracts table names from an array of operation nodes.
- * 
+ *
  * @param froms - Array of operation nodes that may contain table references
  * @returns Array of table names as strings, filtered to exclude empty values
- * 
+ *
  * @internal
  */
 function getTableNames(
@@ -199,10 +199,10 @@ function getTableNames(
 
 /**
  * Extracts the table name from a TableNode, including schema if present.
- * 
+ *
  * @param node - The TableNode containing table and optional schema information
  * @returns The table name as a string, formatted as "schema.table" if schema exists, otherwise just "table"
- * 
+ *
  * @internal
  */
 function getTableName(node: TableNode): string {

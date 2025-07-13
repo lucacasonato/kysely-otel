@@ -7,7 +7,8 @@ OpenTelemetry instrumentation for Kysely SQL query builder.
 - Automatic tracing of SQL queries and transactions
 - Detailed span attributes including query text and row counts
 - Error tracking with exception recording
-- Support for all Kysely query types (SELECT, INSERT, UPDATE, DELETE, DDL operations)
+- Support for all Kysely query types (SELECT, INSERT, UPDATE, DELETE, DDL
+  operations)
 - Zero-configuration auto-instrumentation option
 
 ## Usage
@@ -32,7 +33,8 @@ For zero-configuration setup, simply import the auto module:
 import "@luca/kysely-otel/auto";
 ```
 
-This will automatically set up instrumentation using the package version as the tracer version.
+This will automatically set up instrumentation using the package version as the
+tracer version.
 
 ## Span Attributes
 
