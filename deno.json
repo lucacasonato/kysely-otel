@@ -1,6 +1,10 @@
 {
   "name": "@luca/kysely-otel",
   "version": "0.28.0",
+  "exports": {
+    ".": "./mod.ts",
+    "./auto": "./auto.ts"
+  },
   "imports": {
     "@opentelemetry/api": "npm:@opentelemetry/api@^1.9.0",
     "kysely": "npm:kysely@0.28"
